@@ -10,6 +10,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'flazz/vim-colorschemes'
 "add plugins here
 call vundle#end()
 "sets the # of spaces for indentation and runs plugins based on the filetype
@@ -88,6 +90,7 @@ nnoremap <CR> :noh<CR><CR>
  
 "custom command to remove trailing whitespace from all lines in file
 command Delwsp %s/\s\+$//|noh
+command Wsudo w !sudo tee %
  
 "makes Y yank from current pos to end of line
 nnoremap Y y$
