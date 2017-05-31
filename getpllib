@@ -1,0 +1,2 @@
+#!/usr/bin/perl
+for (@INC){print qq($_\n);}
