@@ -1,0 +1,19 @@
+#!/bin/bash
+curr_bness=$(cat /sys/class/backlight/nv_backlight/brightness)
+
+if [ $curr_bness -le 90 ] && [ $1 = 'u'  ];
+then 
+	new_bness=$(( $curr_bness + 10 )) 
+elif [ $curr_bness -lt 100 ] && [ $1 = 'u' ];
+then
+	new_bness=100
+elif  [ $curr_bness -ge 20 ] && [ $1 = 'd' ];
+then
+	new_bness=$(( $curr_bness - 10 ))
+elif [ $curr_bness -gt 10 ] && [ $1 = 'd' ];
+then
+	new_bness=10
+else
+	new_bness=$curr_bness
+fi
+echo $new_bness > /sys/class/backlight/nv_backlight/brightness
