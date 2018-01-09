@@ -1,0 +1,157 @@
+"enables most vim improvements
+set nocompatible
+
+filetype indent plugin on
+set omnifunc=syntaxcomplete#Complete
+""Set number of lines to keep above/below cursor
+set so=3
+
+"Auto read when a file is modified from outside
+set autoread
+
+"uses the previous line indentation when editing
+set autoindent
+
+"like autoindent, but improved C syntax support
+set smartindent
+
+"indents using shiftwidth instead of tabstop or softtabstop
+set smarttab
+
+"sets 1 tab = 4 spaces, default=8
+""set shiftwidth=4
+
+"wraps long lines between words
+set wrap lbr
+"
+"allows backspacing over autoindent, line breaks, the start of an insert
+set backspace=indent,eol,start
+set whichwrap+=<,>,h,l
+
+"enable regex
+set magic
+"
+"highlights matching parenthesis, brackets
+set showmatch
+
+"the time interval in ms for matched brackets, parenthesis
+set mat=2
+"
+"enable line numbers
+set number
+
+"color coded syntax
+syntax on
+"
+"incremental search when searching for patterns
+set incsearch
+
+"shows where you are in the bottom right of screen
+"set ruler
+"
+"hides abandoned buffer instead of closing it
+set hid
+
+"ignore case when searching strings
+set ignorecase
+
+"if the search string has an uppercase letter, do not ignore case
+set smartcase
+
+"set the colorscheme for vim
+colorscheme delek
+
+"shows autocomplete options when executing a command
+set wildmenu
+
+"Better splitting behavior
+set splitbelow
+set splitright
+
+"Shows command in vim window
+set showcmd
+
+"turns off search highlight when retrun key is pressed in normal mode
+nnoremap <CR> :noh<CR><CR>
+
+"custom command to remove trailing whitespace from all lines in file
+command Delwsp %s/\s\+$//|noh
+"makes Y yank from current pos to end of line
+nnoremap Y y$
+
+"the following four commands make it easier to navigate windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"if the filetype is python, <F5> will run the current python file in an empty
+"window when in normal mode
+autocmd FileType python nnoremap <silent> <buffer> <F5> :!clear;python %<CR>
+autocmd FileType sh nnoremap <silent> <buffer> <F5> :!clear;bash %<CR>
+autocmd FileType perl nnoremap <silent> <buffer> <F5> :!clear;perl %<CR>
+autocmd FileType perl nnoremap <silent> <buffer> <F4> :!clear;perl -w %<CR>
+autocmd FileType xml nnoremap <silent> <buffer> <F4> :%!xmllint --format - <CR>
+
+"the following two maps will allow j and k to move one visual line when
+""dealing with wrapped lines
+"nnoremap j gj
+"nnoremap k gk
+
+"If there is a mouse detected, enable it
+""if has(mouse)
+"   set mouse=a
+"   "endif
+"
+"
+"
+set tags+=~/tags
+
+"Folding options
+set foldmethod=syntax
+set foldlevelstart=999
+let perl_fold=1
+let sh_fold_enabled=1
+let perl_extended_vars=1
+let perl_sync_dist=1
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+set bg=light
+map Q :q
+vmap <tab> >gv
+vmap <s-tab> <gv
+set pastetoggle=<F11>
+" comment/uncomment blocks of code (in vmode)
+autocmd FileType perl vmap _c :s/^/#/gi<Enter>
+autocmd FileType perl vmap _C :s/^#//gi<Enter>
+"Tidy lines with _t
+autocmd FileType perl nnoremap <silent> _t :%!perltidy -q<Enter>
+autocmd FileType perl vnoremap <silent> _t :!perltidy -q<Enter>
+" check perl code with :make
+autocmd FileType perl set makeprg=perl\ -c\ %\ $*
+autocmd FileType perl set errorformat=%f:%l:%m
+autocmd FileType perl set autowrite
+runtime macros/matchit.vim
+"Statusline stuff
+set laststatus=2
+set statusline=
+set statusline+=%2*%h%r%w%*
+set statusline+=%1*\ \ \ <<%*
+set statusline+=%5*\ %f\ %*
+set statusline+=%1*>>%*
+set statusline+=%4*%m\ \
+set statusline+=%3*%F\
+set statusline+=%5*%y\
+set statusline+=%=
+set statusline+=%7*%P\ %*%1*(%l\\%L)\ \ %*
+set statusline+=%5*<<\ %*
+set statusline+=%6*%{strftime('%R',getftime(expand('%')))}\
+set statusline+=%5*::\ %*%1*%n\ %*
+set statusline+=%5*>>%*
+hi User1 ctermbg=16  ctermfg=7
+hi User2 cterm=bold ctermbg=16  ctermfg=124
+hi User3 ctermbg=16  ctermfg=104
+hi User4 ctermbg=16  ctermfg=28
+hi User5 ctermbg=16  ctermfg=130
+hi User6 ctermbg=16  ctermfg=49
+hi User7 ctermbg=16  ctermfg=160
